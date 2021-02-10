@@ -22,7 +22,7 @@ def collect(connection, sql):
 usuario1 = collect(conn, sqlittle)
 lista = []
 
-for i,j in usuario1:
+for i, j in usuario1:
     lista.append(i)
 
 
@@ -38,37 +38,29 @@ class caixa(BoxLayout, Screen):
 
 
     def adda_widget(self):
-        if adc().check:
-            elementoy = adc().check()
-            print(elementoy)
-
-
+        if adc().check():
+           print("oi")
 
 
    # def adda_widget1(self):
     #    self.ids.box3.add_widget(Butao2(text='adicionou'))
 
-
 class adc(BoxLayout):
-    def __init__(self, text='', **kwargs):
+    def __init__(self, text='',pegar='0', **kwargs):
         super(adc, self).__init__(*kwargs)
         self.ids.elemento.text = text
         self.ids.q.text = text
+        self.pegar = pegar
 
     def check(self):
-            elem_check = str(self.ids.elemento.text)
-            print(elem_check)
-            return elem_check
+        self.pegar = self.ids.elemento.text
+        print(self.pegar)
+        sqlittle3 = """ SELECT Usuario FROM Usuarios WHERE Usuario= '"""+self.pegar+"""' """
+        aloca(conn, sqlittle3)
 
-
-
-
-
-class adc1(BoxLayout):
-    def __init__(self, text='', **kwargs):
-        super(adc1, self).__init__(*kwargs)
-        self.ids.q.text = text
-
+def aloca(connects,sqlittle2):
+    c = connects.cursor
+    c.execute(sqlittle2)
 
 class maker_3d(App):
     def build(self):
@@ -76,3 +68,7 @@ class maker_3d(App):
 
 
 maker_3d().run()
+
+teste1 = adc()
+
+print(teste1.pegue())
