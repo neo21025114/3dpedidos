@@ -49,11 +49,11 @@
 
                     ScrollView:
                         BoxLayout:
+                            id:box22
                             spacing:30
                             padding:[0,30,30,30]
                             size_hint_y:None
                             height:self.minimum_height
-                            id:box2
                             orientation:'vertical'
 
 
@@ -142,7 +142,7 @@
                 font_size:'20'
                 height:50
                 width: 200
-                on_release:root.adda_widget()
+                on_release:app.adc.puxa_inf()
 
 <adc>:
 
@@ -160,7 +160,7 @@
         CheckBox:
             size_hint_x:0.15
             id:elemento
-            on_active:root.check()
+            on_active:rc=root.check()
             size_hint_x:0.25
             color:0,0,0
             font_color:0,0,0
@@ -168,3 +168,7 @@
 
             color:0,0,0
             id:q  # mudando o codigo
+<adc1>:
+    Label:
+        color:0,0,0
+        id:caixas22
