@@ -5,7 +5,7 @@
 
     canvas:
         Color:
-            rgba:240/255,240/255,240/255,1
+            rgba:50/255,50/255,50/255,1
         Rectangle:
             size:self.size
             pos:self.pos
@@ -19,7 +19,7 @@
                 padding:[20,0,0,50]
                 canvas:
                     Color:
-                        rgba:20/255,20/255,20/255,20/255
+                        rgb:0.5,0.5,0.5
                     Rectangle:
                         size:350,300
                         pos:40,185
@@ -31,7 +31,7 @@
                     BoxLayout:
                         canvas:
                             Color:
-                                rgba:20/255,20/255,20/255,20/255
+                                rgb:0.5,0.5,0.5
                             Rectangle:
                                 size:350,55
                                 pos:40,495
@@ -40,9 +40,10 @@
 
                         BoxLayout:
                             Label:
-                                color:0,0,0
+                                pos_hint_x:None
+                                color:1,1,1
                                 text_size:self.size
-                                font_size:'20'
+                                font_size:'17'
                                 valign_x:'Center'
                                 text:'Perfil'
                                 padding_x:'140dp'
@@ -61,7 +62,7 @@
                 padding:[20,0,0,50]
                 canvas:
                     Color:
-                        rgba:20/255,2/255,20/255,20/255
+                        rgb:0.5,0.5,0.5
                     Rectangle:
                         size:350,300
                         pos:415,185
@@ -72,7 +73,7 @@
                     BoxLayout:
                         canvas:
                             Color:
-                                rgba:20/255,20/255,20/255,20/255
+                                rgb:0.5,0.5,0.5
                             Rectangle:
                                 size:350,55
                                 pos:415,495
@@ -81,12 +82,13 @@
 
                         BoxLayout:
                             Label:
-                                color:0,0,0
+                                pos_hint_x:None
+                                color:1,1,1
                                 text_size:self.size
-                                font_size:'20'
+                                font_size:'17'
                                 valign_x:'Center'
                                 text:'Peça'
-                                padding_x:'140dp'
+                                padding_x:'145dp'
 
                     ScrollView:
                         BoxLayout:
@@ -103,25 +105,25 @@
         size_hint_y:0.16
         orientation: 'horizontal'
         BoxLayout:
-            padding:[15,0,0,30]
+            padding:[14,0,0,30]
 
             Button:
 
-                background_color:40/255,40/255,40/255,1
+                background_color:240/255,240/255,240/255,1
                 text:'Adicionar Perfil'
                 color:1,1,1
                 size_hint:None,None
-                width:350
+                width:352
                 height:40
                 pos:100,100
 
         BoxLayout:
-            padding:[15,0,0,30]
+            padding:[14,0,0,30]
             Button:
-                background_color:40/255,40/255,40/255,1
+                background_color:240/255,240/255,240/255,1
                 color:0,0,0
                 size_hint:None,None
-                width:350
+                width:352
                 height:40
                 pos:100,100
                 text:'Adicionar Peça'
@@ -132,15 +134,15 @@
             size_hint_y:None
             pos:200,10
             orientation:'vertical'
-            padding:[250,0,0,5]
+            padding:[280,0,0,30]
 
             Button:
                 size_hint:None,None
                 id:c
                 text:'Adicionar Pedido'
                 pos:200,10
-                font_size:'20'
-                height:50
+                font_size:'17'
+                height:35
                 width: 200
                 on_release:app.adc.puxa_inf()
 
@@ -163,11 +165,10 @@
             on_active:rc=root.check()
             size_hint_x:0.25
             color:0,0,0
-            font_color:0,0,0
         Label:
 
-            color:0,0,0
-            id:q  # mudando o codigo
+            color:1,1,1
+            id:q
 <adc1>:
     Label:
         color:0,0,0
