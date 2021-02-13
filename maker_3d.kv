@@ -116,6 +116,7 @@
                 width:352
                 height:40
                 pos:100,100
+               # on_release:app..libera()
 
         BoxLayout:
             padding:[14,0,0,30]
@@ -128,6 +129,7 @@
                 pos:100,100
                 text:'Adicionar Peça'
                 color:1,1,1
+
     BoxLayout:
         size_hint_y:0.1333
         BoxLayout:
@@ -144,9 +146,9 @@
                 font_size:'17'
                 height:35
                 width: 200
-                on_release:app.adc.puxa_inf()
+                on_release:root.juncao()
 
-<adc>:
+<adiciona_checkboxes>:
 
     size_hint_y:None
     padding:[115,0,0,0]
@@ -162,14 +164,35 @@
         CheckBox:
             size_hint_x:0.15
             id:elemento
-            on_active:rc=root.check()
+            on_active:rc=root.retorna_elemento_selecionado()
             size_hint_x:0.25
             color:0,0,0
         Label:
 
             color:1,1,1
             id:q
-<adc1>:
-    Label:
-        color:0,0,0
-        id:caixas22
+
+<adiciona_checkboxes2>:
+
+    size_hint_y:None
+    padding:[115,0,0,0]
+    height:self.minimum_height
+    canvas:
+        Color:
+            rgba:0,0,0,0
+    BoxLayout:
+        orientation:'horizontal'
+        size_hint:None,None
+        height:self.minimum_height
+        height:75
+        CheckBox:
+            size_hint_x:0.15
+            id:elemento
+            on_active:rc=root.retorna_elemento_selecionado()
+            size_hint_x:0.25
+            color:0,0,0
+        Label:
+
+            color:1,1,1
+            id:q
+
