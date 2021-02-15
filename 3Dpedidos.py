@@ -6,6 +6,10 @@ from kivy.config import Config
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from AdicaoPecas import adicao_pecas
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager,Screen
+from random import random
+from kivy.properties import NumericProperty
 
 Config.set('graphics', 'resizable', False) # janela nao alteravel de tamanho
 #Config.set('graphics','width','500')  # largura janela
@@ -13,9 +17,10 @@ Config.set('graphics', 'resizable', False) # janela nao alteravel de tamanho
 conn = conexao1()
 conn2 = conexao2()
 
-
 sqlittle = """SELECT * FROM Modelos """
 sqlittle2 = """SELECT * FROM Perfis1"""
+
+
 
 class adiciona_checkboxes(BoxLayout):
     def __init__(self, text='', **kwargs):
@@ -50,14 +55,13 @@ class adiciona_checkboxes2(BoxLayout):
         print(c.fetchall())
 
 
-
 def retorna_todas_pecas(connection, sql):
     c = connection.cursor()
     c.execute(sql)
     return c.fetchall()
 
 
-def seleciona_peca(connects,sqlittle2):
+def seleciona_peca(connects, sqlittle2):
     c = connects.cursor()
     c.execute(sqlittle2)
     var = c.fetchall()
@@ -89,15 +93,27 @@ class caixa(BoxLayout):
         for element2 in lista2:
             strelement2 = str(element2)
             self.ids.box22.add_widget(adiciona_checkboxes2(text=strelement2))
+
+    def abre_novo_perfil(self):
+        ScreenManager().add_widget(CustomScreen(text='deu certo'))
+
     def juncao(self):
         print(adiciona_checkboxes2.retorna_elemento_selecionado.pegar)
         print(adiciona_checkboxes.retorna_elemento_selecionado.pegar)
 
+
+class CustomScreen(Screen):
+    def __init__(self,text='pass', **kwargs):
+        super(CustomScreen, self).__init__(*kwargs)
+        self.ids.bot_perfil.text = text
+        print("helow")
+
+
 class maker_3d(App):
     def build(self):
         self.adiciona_checkboxes = adiciona_checkboxes()
+        self.adiciona_checboxes2 = adiciona_checkboxes2()
         return caixa()
-
 
 maker_3d().run()
 
