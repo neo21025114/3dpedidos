@@ -18,7 +18,7 @@ conn = conexao1()
 conn2 = conexao2()
 
 sqlittle = """SELECT * FROM Modelos """
-sqlittle2 = """SELECT * FROM Perfis1"""
+sqlittle2 = """SELECT * FROM Perfis"""
 
 
 
@@ -82,10 +82,10 @@ for k, l, m, n in perfis:
 
 print(lista2)
 
-class caixa(BoxLayout):
+class caixa(Screen):
 
     def __init__(self, **kwargs):
-        super().__init__(*kwargs)
+        super().__init__(**kwargs)
 
         for element in lista:
             strelement = str(element)
@@ -94,26 +94,37 @@ class caixa(BoxLayout):
             strelement2 = str(element2)
             self.ids.box22.add_widget(adiciona_checkboxes2(text=strelement2))
 
-    def abre_novo_perfil(self):
-        ScreenManager().add_widget(CustomScreen(text='deu certo'))
+
 
     def juncao(self):
         print(adiciona_checkboxes2.retorna_elemento_selecionado.pegar)
         print(adiciona_checkboxes.retorna_elemento_selecionado.pegar)
 
 
-class CustomScreen(Screen):
-    def __init__(self,text='pass', **kwargs):
-        super(CustomScreen, self).__init__(*kwargs)
-        self.ids.bot_perfil.text = text
-        print("helow")
+class CustomScreen(ScreenManager):
+    def __init__(self, **kwargs):
+        super(CustomScreen, self).__init__(**kwargs)
+        self.add_widget(caixa())
+        self.add_widget(adicao_pecas(name='tela_nova'))
+
+
+    #def abre_nova_peca(self):
+     #   CustomScreen().add_widget(adicao_pecas())
+      #  print("ate aq")
+
+    #def __init__(self,text='pass', **kwargs):
+        #super(CustomScreen, self).__init__(*kwargs)
+       # self.ids.bot_perfil.text = text
+      #  print("helow")
+
+
+class adicao_pecas(Screen):
+        pass
 
 
 class maker_3d(App):
     def build(self):
-        self.adiciona_checkboxes = adiciona_checkboxes()
-        self.adiciona_checboxes2 = adiciona_checkboxes2()
-        return caixa()
+        return CustomScreen()
 
 maker_3d().run()
 
