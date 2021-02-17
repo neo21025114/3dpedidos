@@ -1,14 +1,11 @@
-from kivy.uix.boxlayout import BoxLayout
 from kivy.app import App
 from conexao import conexao1
 from conexao import conexao2
 from kivy.config import Config
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
-from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager,Screen
-from random import random
-from kivy.properties import NumericProperty
+from kivy.uix.screenmanager import ScreenManager, Screen
+from InserirDados import AdicionarPeca, AdicionarPerfil, var_comando, var_perfil
+
 
 Config.set('graphics', 'resizable', False) # janela nao alteravel de tamanho
 #Config.set('graphics','width','500')  # largura janela
@@ -73,10 +70,10 @@ pecas = retorna_todas_pecas(conn, sqlittle)
 lista = []
 lista2 = []
 
-for i, j, k, l, m in pecas:
+for i, j, k in pecas:
     lista.append(i)
 
-for k, l, m, n in perfis:
+for k, l, m,n in perfis:
     lista2.append(k)
 
 print(lista2)
@@ -118,6 +115,7 @@ class CustomScreen(ScreenManager):
 
 
 class adicao_pecas(Screen):
+
         pass
 
 
