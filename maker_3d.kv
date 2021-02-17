@@ -1,152 +1,159 @@
+<CustomScreen>:
+    caixa:
+    adicao_pecas:
+
 <caixa>:
-    size: 500,500
-    orientation:'vertical'
-    padding:[25,25,25,25]
-
-    canvas:
-        Color:
-            rgba:50/255,50/255,50/255,1
-        Rectangle:
-            size:self.size
-            pos:self.pos
+    name:'caixa'
     BoxLayout:
+        size: 500,500
         orientation:'vertical'
+        padding:[25,25,25,25]
 
+        canvas:
+            Color:
+                rgba:50/255,50/255,50/255,1
+            Rectangle:
+                size:self.size
+                pos:self.pos
         BoxLayout:
-            orientation:'horizontal'
-            id:box
-            BoxLayout:
-                padding:[20,0,0,50]
-                canvas:
-                    Color:
-                        rgb:0.5,0.5,0.5
-                    Rectangle:
-                        size:350,300
-                        pos:40,185
-
-                BoxLayout:
-                    spacing:30
-                    orientation:'vertical'
-                    size_hint_y:1.6
-                    BoxLayout:
-                        canvas:
-                            Color:
-                                rgb:0.5,0.5,0.5
-                            Rectangle:
-                                size:350,55
-                                pos:40,495
-                            Line:
-                                points:2,2
-
-                        BoxLayout:
-                            Label:
-                                pos_hint_x:None
-                                color:1,1,1
-                                text_size:self.size
-                                font_size:'17'
-                                valign_x:'Center'
-                                text:'Perfil'
-                                padding_x:'140dp'
-
-                    ScrollView:
-                        BoxLayout:
-                            id:box22
-                            spacing:30
-                            padding:[0,30,30,30]
-                            size_hint_y:None
-                            height:self.minimum_height
-                            orientation:'vertical'
-
-
-            BoxLayout:
-                padding:[20,0,0,50]
-                canvas:
-                    Color:
-                        rgb:0.5,0.5,0.5
-                    Rectangle:
-                        size:350,300
-                        pos:415,185
-                BoxLayout:
-                    spacing:30
-                    orientation:'vertical'
-                    size_hint_y:1.6
-                    BoxLayout:
-                        canvas:
-                            Color:
-                                rgb:0.5,0.5,0.5
-                            Rectangle:
-                                size:350,55
-                                pos:415,495
-                            Line:
-                                points:2,2
-
-                        BoxLayout:
-                            Label:
-                                pos_hint_x:None
-                                color:1,1,1
-                                text_size:self.size
-                                font_size:'17'
-                                valign_x:'Center'
-                                text:'Peça'
-                                padding_x:'145dp'
-
-                    ScrollView:
-                        BoxLayout:
-                            spacing:30
-                            padding:[10,30,30,30]
-                            size_hint_y:None
-                            height:self.minimum_height
-                            id:box3
-                            orientation:'vertical'
-
-    BoxLayout:
-        padding:[0,0,0,30]
-        pos:0,0
-        size_hint_y:0.16
-        orientation: 'horizontal'
-        BoxLayout:
-            padding:[14,0,0,30]
-
-            Button:
-
-                background_color:240/255,240/255,240/255,1
-                text:'Adicionar Perfil'
-                color:1,1,1
-                size_hint:None,None
-                width:352
-                height:40
-                pos:100,100
-                on_release:root.abre_novo_perfil()
-
-        BoxLayout:
-            padding:[14,0,0,30]
-            Button:
-                background_color:240/255,240/255,240/255,1
-                color:0,0,0
-                size_hint:None,None
-                width:352
-                height:40
-                pos:100,100
-                text:'Adicionar Peça'
-                color:1,1,1
-
-    BoxLayout:
-        size_hint_y:0.1333
-        BoxLayout:
-            size_hint_y:None
-            pos:200,10
             orientation:'vertical'
-            padding:[280,0,0,30]
 
-            Button:
-                size_hint:None,None
-                id:c
-                text:'Adicionar Pedido'
+            BoxLayout:
+                orientation:'horizontal'
+                id:box
+                BoxLayout:
+                    padding:[20,0,0,50]
+                    canvas:
+                        Color:
+                            rgb:0.5,0.5,0.5
+                        Rectangle:
+                            size:350,300
+                            pos:40,185
+
+                    BoxLayout:
+                        spacing:30
+                        orientation:'vertical'
+                        size_hint_y:1.6
+                        BoxLayout:
+                            canvas:
+                                Color:
+                                    rgb:0.5,0.5,0.5
+                                Rectangle:
+                                    size:350,55
+                                    pos:40,495
+                                Line:
+                                    points:2,2
+
+                            BoxLayout:
+                                Label:
+                                    pos_hint_x:None
+                                    color:1,1,1
+                                    text_size:self.size
+                                    font_size:'17'
+                                    valign_x:'Center'
+                                    text:'Perfil'
+                                    padding_x:'140dp'
+
+                        ScrollView:
+                            BoxLayout:
+                                id:box22
+                                spacing:30
+                                padding:[0,30,30,30]
+                                size_hint_y:None
+                                height:self.minimum_height
+                                orientation:'vertical'
+
+
+                BoxLayout:
+                    padding:[20,0,0,50]
+                    canvas:
+                        Color:
+                            rgb:0.5,0.5,0.5
+                        Rectangle:
+                            size:350,300
+                            pos:415,185
+                    BoxLayout:
+                        spacing:30
+                        orientation:'vertical'
+                        size_hint_y:1.6
+                        BoxLayout:
+                            canvas:
+                                Color:
+                                    rgb:0.5,0.5,0.5
+                                Rectangle:
+                                    size:350,55
+                                    pos:415,495
+                                Line:
+                                    points:2,2
+
+                            BoxLayout:
+                                Label:
+                                    pos_hint_x:None
+                                    color:1,1,1
+                                    text_size:self.size
+                                    font_size:'17'
+                                    valign_x:'Center'
+                                    text:'Peça'
+                                    padding_x:'145dp'
+
+                        ScrollView:
+                            BoxLayout:
+                                spacing:30
+                                padding:[10,30,30,30]
+                                size_hint_y:None
+                                height:self.minimum_height
+                                id:box3
+                                orientation:'vertical'
+
+        BoxLayout:
+            padding:[0,0,0,30]
+            pos:0,0
+            size_hint_y:0.16
+            orientation: 'horizontal'
+            BoxLayout:
+                padding:[14,0,0,30]
+
+                Button:
+
+                    background_color:240/255,240/255,240/255,1
+                    text:'Adicionar Perfil'
+                    color:1,1,1
+                    size_hint:None,None
+                    width:352
+                    height:40
+                    pos:100,100
+                    #on_release:root.abre_novo_perfil()
+
+            BoxLayout:
+                padding:[14,0,0,30]
+                Button:
+                    background_color:240/255,240/255,240/255,1
+                    color:0,0,0
+                    size_hint:None,None
+                    width:352
+                    height:40
+                    pos:100,100
+                    text:'Adicionar Peça'
+                    color:1,1,1
+                    on_release:root.manager.current = 'tela_nova'
+
+        BoxLayout:
+            size_hint_y:0.1333
+            BoxLayout:
+                size_hint_y:None
                 pos:200,10
-                font_size:'17'
-                height:35
-                width: 200
-                on_release:root.juncao()
+                orientation:'vertical'
+                padding:[280,0,0,30]
+
+                Button:
+                    size_hint:None,None
+                    id:c
+                    text:'Adicionar Pedido'
+                    pos:200,10
+                    font_size:'17'
+                    height:35
+                    width: 200
+                    on_release:root.juncao()
 
 <adiciona_checkboxes>:
 
@@ -196,9 +203,11 @@
             color:1,1,1
             id:q
 
-<CustomScreen>:
-    Button:
-        id:bot_perfil
-        text: 'ola'
-
+<adicao_pecas>:
+    BoxLayout:
+        Label:
+            text:'ola mundo'
+        Button:
+            text:'voltar'
+            on_press:root.manager.current = 'caixa'
 

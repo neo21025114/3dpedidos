@@ -3,7 +3,7 @@ from sqlite3 import Error
 
 
 def conexao1():
-    caminho = "C:\\Bancos\\AcaoFigurada.db"
+    caminho = "C:\\Banco\\AcaoFigurada.db"
     try:
         con = sqlite3.connect(caminho)
         return con
@@ -11,9 +11,9 @@ def conexao1():
         print(er)
 
 def conexao2():
-    caminho = "C:\\Bancos\\Perfis.db"
+    caminho = "C:\\Banco\\Perfis.db"
     try:
-        con = sqlite3.connect(caminho)
-        return con
+        con1 = sqlite3.connect(caminho)
+        return con1
     except Error as er:
         print(er)
