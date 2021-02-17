@@ -5,7 +5,6 @@ from conexao import conexao2
 from kivy.config import Config
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
-from AdicaoPecas import adicao_pecas
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager,Screen
 from random import random
@@ -18,7 +17,7 @@ conn = conexao1()
 conn2 = conexao2()
 
 sqlittle = """SELECT * FROM Modelos """
-sqlittle2 = """SELECT * FROM Perfis1"""
+sqlittle2 = """SELECT * FROM Perfis"""
 
 
 
@@ -32,7 +31,7 @@ class adiciona_checkboxes(BoxLayout):
         adiciona_checkboxes.retorna_elemento_selecionado.pegar = self.ids.elemento.text
 
     def retorna_todas_informacoes_peca_selecionada(self):
-        sqlittle4 = """SELECT * FROM Modelos WHERE Peça='""" +adiciona_checkboxes.retorna_elemento_selecionado.pegar+ """' """
+        sqlittle4 = """SELECT * FROM Modelos WHERE Peça='""" +adiciona_checkboxes.retorgina_elemento_selecionado.pegar+ """' """
         c = conn.cursor()
         c.execute(sqlittle4)
         print(c.fetchall())
