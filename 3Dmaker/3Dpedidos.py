@@ -108,7 +108,7 @@ class CustomScreen(ScreenManager):
       #  print("ate aq")
 
     #def __init__(self,text='pass', **kwargs):
-        #super(CustomScreen, self).__init__(*kwargs)
+        #super(CustomScreen, self).__init__(*kwar
        # self.ids.bot_perfil.text = text
       #  print("helow")
 
