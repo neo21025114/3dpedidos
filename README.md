@@ -1,7 +1,14 @@
 # 3dpedidos
-Controle, adicao de Peças e pedidos
+
+Esse programa terá a função de organizar a vida de quem trabalha com impressao 3d.
+- Adição de pedidos de acordo com:
+    - Modelo Cadastrado.
+    - Preço da materia prima.
+    - Preço por hora da maquina.
+    - O quanto Cobrar por impressão 3D.
+- Controle de prazos de pedidos.
+
 Laboratório para aprendizado de framework kivy, conexao banco de dados sqlite.
 
-Esse programa tem a função de organizar a vida de quem trabalha com impressao 3d.
 
-Adição de peças, adição de perfis. materia prima, e cadastro de pedidos.
+(In progress ....)
