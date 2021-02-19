@@ -1,7 +1,7 @@
 <CustomScreen>:
     caixa:
     adicao_pecas:
-
+    caixa:
 <caixa>:
     name:'caixa'
     BoxLayout:
@@ -254,6 +254,7 @@
                     font_name:'Comic'
                     text:'Preço Filamento'
                 TextInput:
+                    id:filamento
                     size_hint:None,None
                     height:30
                     width:150
@@ -269,6 +270,7 @@
                     padding_x:'38dp'
                     text:'Preço Hora'
                 TextInput:
+                    id:hora
                     size_hint:None,None
                     height:30
                     width:150
@@ -285,6 +287,7 @@
                     padding_x:'0dp'
                     text:'Multiplicador filamento'
                 TextInput:
+                    id:mult
                     size_hint:None,None
                     height:30
                     width:150
@@ -294,6 +297,7 @@
             size_hint_y:0.25
             padding:[275,0,0,120]
             Button:
+
                 background_color:50/255,50/255,50/255,1
                 size_hint:None,None
                 height:35
@@ -302,6 +306,7 @@
                 pos_hint_x:None
                 pos:200,150
                 text:'Cadastrar perfil'
+                on_release:root.adiciona_perfil(),root.refresh()
 
 #change
         BoxLayout:

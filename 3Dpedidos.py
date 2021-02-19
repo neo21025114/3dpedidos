@@ -73,10 +73,10 @@ lista2 = []
 for i, j, k, l, m in pecas:
     lista.append(i)
 
-for n, o, p,q in perfis:
+for n, o, p, q in perfis:
     lista2.append(n)
 
-print(lista2)
+tamanho = len(lista2)
 
 class caixa(Screen):
 
@@ -89,6 +89,15 @@ class caixa(Screen):
         for element2 in lista2:
             strelement2 = str(element2)
             self.ids.box22.add_widget(adiciona_checkboxes2(text=strelement2))
+
+    def reset(self):
+        n = 0
+        for element4 in lista2:
+            n = n+1
+            if n == tamanho:
+                str_elemento_adicao = str(element4)
+                self.ids.box22.add_widget(adiciona_checkboxes2(text=str_elemento_adicao))
+                print("aq foi")
 
 
     def juncao(self):
@@ -118,12 +127,18 @@ class adicao_pecas(Screen):
         fila = str(self.ids.filamento.text)
         hour = str(self.ids.hora.text)
         multi = str(self.ids.mult.text)
+        soma = tamanho + 1
+        perfil = 'Perfil '+str(soma)
+        AdicionarPerfil(conn2, sql_perfil, perfil, fila, hour, multi)
 
-        AdicionarPerfil(conn2, sql_perfil, 'perfil2',fila, hour, multi )
+    def refresh(self):
+        caixa().reset()
+        print("ate aq foi")
 
 class maker_3d(App):
     def build(self):
         return CustomScreen()
+
 
 maker_3d().run()
 
