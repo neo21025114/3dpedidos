@@ -1,0 +1,325 @@
+<CustomScreen>:
+    caixa:
+    adicao_pecas:
+
+<caixa>:
+    name:'caixa'
+    BoxLayout:
+        size: 500,500
+        orientation:'vertical'
+        padding:[25,25,25,25]
+
+        canvas:
+            Color:
+                rgba:50/255,50/255,50/255,1
+            Rectangle:
+                size:self.size
+                pos:self.pos
+        BoxLayout:
+            orientation:'vertical'
+
+            BoxLayout:
+                orientation:'horizontal'
+                id:box
+                BoxLayout:
+                    padding:[20,0,0,50]
+                    canvas:
+                        Color:
+                            rgba:100/255,100/255,100/255,1
+                        Rectangle:
+                            size:350,300
+                            pos:40,185
+
+                    BoxLayout:
+                        spacing:20
+                        orientation:'vertical'
+                        size_hint_y:1.6
+                        BoxLayout:
+                            canvas:
+                                Color:
+                                    rgba:80/255,80/255,80/255,1
+                                Rectangle:
+                                    size:350,55
+                                    pos:40,495
+                                Line:
+                                    points:2,2
+
+                            BoxLayout:
+                                Label:
+                                    pos_hint_x:None
+                                    font_name:'Comic'
+                                    color:1,1,1
+                                    text_size:self.size
+                                    font_size:'17'
+                                    valign_x:'Center'
+                                    text:'Perfil'
+                                    padding_x:'145dp'
+
+                        ScrollView:
+                            BoxLayout:
+                                id:box22
+                                spacing:30
+                                padding:[0,30,30,30]
+                                size_hint_y:None
+                                height:self.minimum_height
+                                orientation:'vertical'
+
+
+                BoxLayout:
+                    padding:[20,0,0,50]
+                    canvas:
+                        Color:
+                            rgba:100/255,100/255,100/255,1
+                        Rectangle:
+                            size:350,300
+                            pos:415,185
+                    BoxLayout:
+                        spacing:20
+                        orientation:'vertical'
+                        size_hint_y:1.6
+                        BoxLayout:
+                            canvas:
+                                Color:
+                                    rgba:80/255,80/255,80/255,1
+                                Rectangle:
+                                    size:350,55
+                                    pos:415,495
+                                Line:
+                                    points:2,2
+
+                            BoxLayout:
+                                Label:
+                                    pos_hint_x:None
+                                    color:1,1,1
+                                    font_name:'Comic'
+                                    text_size:self.size
+                                    font_size:'17'
+                                    valign_x:'Center'
+                                    text:'Peça'
+                                    padding_x:'148dp'
+
+                        ScrollView:
+                            BoxLayout:
+                                spacing:30
+                                padding:[10,30,30,30]
+                                size_hint_y:None
+                                height:self.minimum_height
+                                id:box3
+                                orientation:'vertical'
+
+        BoxLayout:
+            padding:[0,0,0,30]
+            pos:0,0
+            size_hint_y:0.16
+            orientation: 'horizontal'
+            BoxLayout:
+                padding:[14,0,0,30]
+
+                Button:
+
+                    background_color:80/255,80/255,80/255,1
+                    text:'Adicionar Perfil'
+                    color:1,1,1
+                    font_name:'Comic'
+                    size_hint:None,None
+                    width:352
+                    height:40
+                    pos:100,100
+                    on_release:root.manager.current = 'tela_nova'
+
+            BoxLayout:
+                padding:[14,0,0,30]
+                Button:
+                    background_color:80/255,80/255,80/255,1
+                    color:0,0,0
+                    size_hint:None,None
+                    width:352
+                    height:40
+                    pos:100,100
+                    text:'Adicionar Peça'
+                    font_name:'Comic'
+                    color:1,1,1
+                    #on_release:root.manager.current = 'tela_nova'
+
+        BoxLayout:
+            size_hint_y:0.1333
+            BoxLayout:
+                size_hint_y:None
+                pos:200,10
+                orientation:'vertical'
+                padding:[280,0,0,30]
+
+                Button:
+                    size_hint:None,None
+                    id:c
+                    font_name:'Comic'
+                    background_color:80/255,80/255,80/255,1
+                    text:'Adicionar Pedido'
+                    pos:200,10
+                    font_size:'17'
+                    height:35
+                    width: 200
+                    on_release:root.juncao()
+
+<adiciona_checkboxes>:
+
+    size_hint_y:None
+    padding:[80,0,0,0]
+    height:self.minimum_height
+    canvas:
+        Color:
+            rgba:245/255,245/255,245/255,1
+    BoxLayout:
+        orientation:'horizontal'
+        size_hint:None,None
+        height:self.minimum_height
+        height:75
+        spacing:70
+        CheckBox:
+            size_hint_x:0.3
+            id:elemento
+            on_active:rc=root.retorna_elemento_selecionado()
+            color:0,0,0
+        Label:
+            font_name:'Comic'
+            color:1,1,1
+            id:q
+
+<adiciona_checkboxes2>:
+
+    size_hint_y:None
+    padding:[80,0,0,0]
+    height:self.minimum_height
+    canvas:
+        Color:
+            rgba:0,0,0,0
+    BoxLayout:
+        orientation:'horizontal'
+        size_hint:None,None
+        height:self.minimum_height
+        height:75
+        spacing:70
+        CheckBox:
+            size_hint_x:0.3
+            id:elemento
+            on_active:rc=root.retorna_elemento_selecionado()
+            color:0,0,0
+        Label:
+            font_name:'Comic'
+            color:1,1,1
+            id:q
+
+<adicao_pecas>:
+    BoxLayout:
+        canvas:
+            Color:
+                rgba:50/255,50/255,50/255,1
+            Rectangle:
+                size:self.size
+                pos:self.pos
+        orientation:'vertical'
+
+        BoxLayout:
+            canvas:
+                Color:
+                    rgba:80/255,80/255,80/255,1
+                Rectangle:
+                    size:650,50
+                    pos:68,520
+            Label:
+                pos_hint_x:None
+                text_size:self.size
+                padding_x:'350dp'
+                padding_y:'170dp'
+                font_name:'Comic'
+                text:'Novo Perfil'
+
+        BoxLayout:
+            orientation:'horizontal'
+            padding:[40,0,0,40]
+            canvas:
+                Color:
+                    rgba:100/255,100/255,100/255,1
+                Rectangle:
+                    size:650,350
+                    pos:68,160
+            BoxLayout:
+                orientation:'vertical'
+                padding:[75,0,0,200]
+                spacing:15
+                Label:
+                    pos_hint_x:None
+                    text_size:self.size
+                    padding_x:'23dp'
+                    font_name:'Comic'
+                    text:'Preço Filamento'
+                TextInput:
+                    id:filamento
+                    size_hint:None,None
+                    height:30
+                    width:150
+
+            BoxLayout:
+                orientation:'vertical'
+                padding:[26,0,0,200]
+                spacing:15
+                Label:
+                    pos_hint_x:None
+                    text_size:self.size
+                    font_name:'Comic'
+                    padding_x:'38dp'
+                    text:'Preço Hora'
+                TextInput:
+                    id:hora
+                    size_hint:None,None
+                    height:30
+                    width:150
+            BoxLayout:
+                orientation:'vertical'
+                padding:[-30,0,0,200]
+                spacing:15
+                Label:
+                    font_size:'15'
+                    pos_hint_x:None
+                    pos_hint_y:None
+                    font_name:'Comic'
+                    text_size:self.size
+                    padding_x:'0dp'
+                    padding_y:'10dp'
+                    text:'Multiplicador filamento'
+                TextInput:
+                    id:mult
+                    size_hint:None,None
+                    height:30
+                    width:150
+
+        BoxLayout:
+            size_hint_y:0.25
+            padding:[275,0,0,120]
+            Button:
+                background_color:120/255,120/255,120/255,1
+                size_hint:None,None
+                height:35
+                width:250
+                font_name:'Comic'
+                pos_hint_x:None
+                pos:195,150
+                text:'Cadastrar perfil'
+                on_release:root.adiciona_perfil()
+
+
+        BoxLayout:
+            size_hint_y:0.25
+            orientation:'vertical'
+            spacing:100
+
+            BoxLayout:
+                padding:[295,0,0,30]
+                Button:
+                    font_name:'Comic'
+                    size_hint:None,None
+                    height:35
+                    width:200
+                    text:'Voltar'
+                    on_press:root.manager.current = 'caixa'
+

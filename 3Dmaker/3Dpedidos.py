@@ -4,7 +4,7 @@ from conexao import conexao2
 from kivy.config import Config
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
-from InserirDados import AdicionarPeca, AdicionarPerfil, var_comando, var_perfil
+from AdicaoPecas import AdicionarPerfil, sql_perfil
 
 
 Config.set('graphics', 'resizable', False) # janela nao alteravel de tamanho
@@ -70,11 +70,11 @@ pecas = retorna_todas_pecas(conn, sqlittle)
 lista = []
 lista2 = []
 
-for i, j, k in pecas:
+for i, j, k, l, m in pecas:
     lista.append(i)
 
-for k, l, m,n in perfis:
-    lista2.append(k)
+for n, o, p,q in perfis:
+    lista2.append(n)
 
 print(lista2)
 
@@ -89,7 +89,6 @@ class caixa(Screen):
         for element2 in lista2:
             strelement2 = str(element2)
             self.ids.box22.add_widget(adiciona_checkboxes2(text=strelement2))
-
 
 
     def juncao(self):
@@ -115,15 +114,19 @@ class CustomScreen(ScreenManager):
 
 
 class adicao_pecas(Screen):
+    def adiciona_perfil(self):
+        fila = str(self.ids.filamento.text)
+        hour = str(self.ids.hora.text)
+        multi = str(self.ids.mult.text)
 
-        pass
-
+        AdicionarPerfil(conn2, sql_perfil, 'perfil2',fila, hour, multi )
 
 class maker_3d(App):
     def build(self):
         return CustomScreen()
 
 maker_3d().run()
+
 
 
 
