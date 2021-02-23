@@ -139,7 +139,7 @@
                     text:'Adicionar Peça'
                     font_name:'Comic'
                     color:1,1,1
-                    #on_release:root.manager.current = 'tela_nova'
+                    on_release:root.reset()
 
         BoxLayout:
             size_hint_y:0.1333
@@ -306,7 +306,7 @@
                 pos_hint_x:None
                 pos:200,150
                 text:'Cadastrar perfil'
-                on_release:root.adiciona_perfil(),root.refresh()
+                on_release:root.adiciona_perfil(),app.root.get_screen('caixa').reset()
 
 #change
         BoxLayout:
