@@ -5,7 +5,7 @@ from kivy.config import Config
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 from AdicaoPecas import AdicionarPerfil, sql_perfil
-
+from subprocess import Popen
 
 Config.set('graphics', 'resizable', False) # janela nao alteravel de tamanho
 #Config.set('graphics','width','500')  # largura janela
@@ -69,14 +69,20 @@ pecas = retorna_todas_pecas(conn, sqlittle)
 
 lista = []
 lista2 = []
-
+lista3=[]
 for i, j, k, l, m in pecas:
     lista.append(i)
 
 for n, o, p, q in perfis:
     lista2.append(n)
 
+for r,s,t,u in perfis:
+    lista3.append(r)
+
 tamanho = len(lista2)
+print(tamanho)
+adctamanho = str(tamanho+1)
+
 
 class caixa(Screen):
 
@@ -91,15 +97,30 @@ class caixa(Screen):
             self.ids.box22.add_widget(adiciona_checkboxes2(text=strelement2))
 
 
+
     def reset(self):
         n = 0
-        for element4 in lista2:
-            n = n+1
-            if n == tamanho:
-                str_elemento_adicao = str(element4)
-                self.ids.box22.add_widget(adiciona_checkboxes2(text='oi'))
-                print("aq foi")
+        if len(lista3) != 0:
+            for element4 in lista3:
+                n = n + 1
+                if n == tamanho:
 
+                    sqlittlePerfil = """SELECT Perfil FROM Perfis WHERE Perfil='Perfil """+adctamanho+"""'"""
+                    c = conn2.cursor()
+                    c.execute(sqlittlePerfil)
+                    retorna_novo_perfil = c.fetchall()
+                    elemento_unico = str(retorna_novo_perfil[0][0])
+                    self.ids.box22.add_widget(adiciona_checkboxes2(text=elemento_unico))
+                    print("aq foi")
+        else:
+
+            sqlittlePerfil = """SELECT Perfil FROM Perfis WHERE Perfil='Perfil """ + adctamanho + """'"""
+            c = conn2.cursor()
+            c.execute(sqlittlePerfil)
+            retorna_novo_perfil = c.fetchall()
+            elemento_unico = str(retorna_novo_perfil[0][0])
+            self.ids.box22.add_widget(adiciona_checkboxes2(text=elemento_unico))
+            print("aq foi tbm")
 
     def juncao(self):
         print(adiciona_checkboxes2.retorna_elemento_selecionado.pegar)
@@ -110,8 +131,8 @@ class CustomScreen(ScreenManager):
     def __init__(self, **kwargs):
         super(CustomScreen, self).__init__(**kwargs)
         self.add_widget(caixa())
-        self.add_widget(adicao_pecas(name='tela_nova'))
-
+        self.add_widget(adicao_perfil(name='tela_nova'))
+        self.add_widget(tela_concluido(name='telinha'))
 
     #def abre_nova_peca(self):
      #   CustomScreen().add_widget(adicao_pecas())
@@ -123,9 +144,14 @@ class CustomScreen(ScreenManager):
       #  print("helow")
 
 
-class adicao_pecas(Screen):
+class tela_concluido(Screen):
     def __init__(self, **kwargs):
-        super(adicao_pecas, self).__init__(**kwargs)
+        super(tela_concluido, self ).__init__(**kwargs)
+
+
+class adicao_perfil(Screen):
+    def __init__(self, **kwargs):
+        super(adicao_perfil, self).__init__(**kwargs)
 
     def adiciona_perfil(self):
         fila = str(self.ids.filamento.text)
@@ -134,13 +160,14 @@ class adicao_pecas(Screen):
         soma = tamanho + 1
         perfil = 'Perfil '+str(soma)
         AdicionarPerfil(conn2, sql_perfil, perfil, fila, hour, multi)
-
-
+    def tela_concluido(self):
+        process = Popen(['python3', 'settings.py'])
 
 
 class maker_3d(App):
     def build(self):
         return CustomScreen()
+
 
 
 maker_3d().run()
