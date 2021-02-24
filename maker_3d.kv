@@ -3,6 +3,7 @@
     adicao_perfil:
     caixa:
     tela_concluido:
+    adicao_peca:
 <caixa>:
     name:'caixa'
     BoxLayout:
@@ -140,27 +141,38 @@
                     text:'Adicionar Peça'
                     font_name:'Comic'
                     color:1,1,1
-                    on_release:root.reset()
+                    on_release:root.manager.current = 'novapeca'
 
         BoxLayout:
             size_hint_y:0.1333
             BoxLayout:
                 size_hint_y:None
                 pos:200,10
-                orientation:'vertical'
-                padding:[280,0,0,30]
+                orientation:'horizontal'
+                padding:[125,0,0,30]
+                spacing:100
 
                 Button:
                     size_hint:None,None
                     id:c
                     font_name:'Comic'
-                    background_color:80/255,80/255,80/255,1
+                    background_color:25/255,80/255,80/255,1
                     text:'Adicionar Pedido'
-                    pos:200,10
+                    pos:100,10
                     font_size:'17'
                     height:35
                     width: 200
                     on_release:root.juncao()
+                Button:
+                    text:'Consultar Pedidos'
+                    size_hint:None,None
+                    id:c
+                    font_name:'Comic'
+                    background_color:80/255,25/255,80/255,1
+                    pos:50,10
+                    font_size:'17'
+                    height:35
+                    width: 200
 
 <adiciona_checkboxes>:
 
@@ -214,6 +226,122 @@
     BoxLayout:
         Label:
             text:'Adicionado com Sucesso'
+<adicao_peca>:
+    BoxLayout:
+        canvas:
+            Color:
+                rgba:50/255,50/255,50/255,1
+            Rectangle:
+                size:self.size
+                pos:self.pos
+        orientation:'vertical'
+
+        BoxLayout:
+            canvas:
+                Color:
+                    rgba:80/255,80/255,80/255,1
+                Rectangle:
+                    size:650,50
+                    pos:68,520
+            Label:
+                pos_hint_x:None
+                text_size:self.size
+                padding_x:'350dp'
+                padding_y:'170dp'
+                font_name:'Comic'
+                text:'Novo Perfil'
+
+        BoxLayout:
+            orientation:'horizontal'
+            padding:[40,0,0,40]
+            canvas:
+                Color:
+                    rgba:100/255,100/255,100/255,1
+                Rectangle:
+                    size:650,350
+                    pos:68,160
+            BoxLayout:
+                orientation:'vertical'
+                padding:[75,0,0,200]
+                spacing:10
+                Label:
+                    pos_hint_x:None
+                    text_size:self.size
+                    padding_x:'23dp'
+                    font_name:'Comic'
+                    text:'Preço Filamento'
+                TextInput:
+                    id:filamento
+                    size_hint:None,None
+                    height:30
+                    width:150
+
+            BoxLayout:
+                orientation:'vertical'
+                padding:[26,0,0,200]
+                spacing:10
+                Label:
+                    pos_hint_x:None
+                    text_size:self.size
+                    font_name:'Comic'
+                    padding_x:'38dp'
+                    text:'Preço Hora'
+                TextInput:
+                    id:hora
+                    size_hint:None,None
+                    height:30
+                    width:150
+            BoxLayout:
+                orientation:'vertical'
+                padding:[-30,0,0,200]
+                spacing:10
+                Label:
+                    font_size:'15'
+                    pos_hint_x:None
+                    pos_hint_y:None
+                    font_name:'Comic'
+                    text_size:self.size
+                    padding_x:'0dp'
+                    text:'Multiplicador filamento'
+                TextInput:
+                    id:mult
+                    size_hint:None,None
+                    height:30
+                    width:150
+
+        BoxLayout:
+            orientation:'vertical'
+            size_hint_y:0.25
+            padding:[275,0,0,120]
+            Button:
+
+                background_color:50/255,50/255,50/255,1
+                size_hint:None,None
+                height:35
+                width:250
+                font_name:'Comic'
+                pos_hint_x:None
+                pos:200,150
+                text:'Cadastrar perfil'
+                on_press:root.adiciona_perfil(),app.root.get_screen('caixa').reset()
+                on_release: root.tela_concluido()
+#change
+        BoxLayout:
+            size_hint_y:0.25
+            orientation:'vertical'
+            spacing:100
+
+            BoxLayout:
+                padding:[295,0,0,30]
+                Button:
+                    font_name:'Comic'
+                    size_hint:None,None
+                    height:35
+                    width:200
+                    text:'Voltar'
+                    on_press:root.manager.current = 'caixa'
+
+
 
 <adicao_perfil>:
     BoxLayout:
@@ -313,7 +441,7 @@
                 pos:200,150
                 text:'Cadastrar perfil'
                 on_press:root.adiciona_perfil(),app.root.get_screen('caixa').reset()
-                #on_release: root.tela_concluido()
+                on_release: root.tela_concluido()
 #change
         BoxLayout:
             size_hint_y:0.25
