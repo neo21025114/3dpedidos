@@ -4,8 +4,11 @@ from conexao import conexao2
 from kivy.config import Config
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
-from AdicaoPecas import AdicionarPerfil, sql_perfil
-from subprocess import Popen
+from AdicaoPecas import AdicionarPerfil, sql_perfil, AdicionarPeca, sql_peca
+import subprocess
+import sys
+from os import pipe
+import kivy.uix
 
 Config.set('graphics', 'resizable', False) # janela nao alteravel de tamanho
 #Config.set('graphics','width','500')  # largura janela
@@ -31,7 +34,7 @@ class adiciona_checkboxes(BoxLayout):
         sqlittle4 = """SELECT * FROM Modelos WHERE Peça='""" +adiciona_checkboxes.retorgina_elemento_selecionado.pegar+ """' """
         c = conn.cursor()
         c.execute(sqlittle4)
-        print(c.fetchall())
+        c.fetchall()
 
 
 class adiciona_checkboxes2(BoxLayout):
@@ -70,18 +73,24 @@ pecas = retorna_todas_pecas(conn, sqlittle)
 lista = []
 lista2 = []
 lista3=[]
-for i, j, k, l, m in pecas:
+lista4=[]
+
+for i, j, k in pecas:
     lista.append(i)
+
+
 
 for n, o, p, q in perfis:
     lista2.append(n)
 
-for r,s,t,u in perfis:
+for r, s, t, u in perfis:
     lista3.append(r)
 
 tamanho = len(lista2)
+tamanho2 = len(lista2)
 print(tamanho)
 adctamanho = str(tamanho+1)
+adctamanho2 = str(tamanho+1)
 
 
 class caixa(Screen):
@@ -98,7 +107,7 @@ class caixa(Screen):
 
 
 
-    def reset(self):
+    def reset_perfil(self):
         n = 0
         if len(lista3) != 0:
             for element4 in lista3:
@@ -122,6 +131,33 @@ class caixa(Screen):
             self.ids.box22.add_widget(adiciona_checkboxes2(text=elemento_unico))
             print("aq foi tbm")
 
+    def reset_peca(self):
+        j = 0
+        if len(lista)!= 0:
+            sql = """SELECT * FROM Modelos"""
+            c = conn.cursor()
+            c.execute(sql)
+            informacoes_pecas = c.fetchall()
+            for l, m, n in informacoes_pecas:
+                lista4.append(l)
+
+            for element5 in lista4:
+                j = j + 1
+                if j == tamanho:
+
+                    sql_peca = """SELECT Peça FROM Modelos WHERE Peça='"""+lista4[tamanho]+"""' """
+                    c = conn2.cursor()
+                    c.execute(sql_peca)
+                    elemento_peca = str(c.fetchall())
+                    self.ids.box3.add_widget(adiciona_checkboxes(text=elemento_peca))
+        else:
+            pass
+            #sql_peca0 = """SELECT Peça FROM Modelos WHERE Peça='"""+peca+"""'"""
+            #c = conn.cursor()
+            #c.execute(sql_peca0)
+            #primeiro_elemento = str(c.fetchall())
+
+            #self.ids.box3.add_widget(adiciona_checkboxes(text=primeiro_elemento))
     def juncao(self):
         print(adiciona_checkboxes2.retorna_elemento_selecionado.pegar)
         print(adiciona_checkboxes.retorna_elemento_selecionado.pegar)
@@ -132,6 +168,7 @@ class CustomScreen(ScreenManager):
         super(CustomScreen, self).__init__(**kwargs)
         self.add_widget(caixa())
         self.add_widget(adicao_perfil(name='tela_nova'))
+        self.add_widget(adicao_peca(name='tela_nova2'))
         self.add_widget(tela_concluido(name='telinha'))
 
     #def abre_nova_peca(self):
@@ -148,6 +185,19 @@ class tela_concluido(Screen):
     def __init__(self, **kwargs):
         super(tela_concluido, self ).__init__(**kwargs)
 
+class adicao_peca(Screen):
+    def __init__(self, **kwargs):
+        super(adicao_peca, self).__init__(**kwargs)
+
+    def adiciona_peca(self):
+        peca = str(self.ids.peca.text)
+        hr = str(self.ids.hr.text)
+        peso = str(self.ids.peso.text)
+        AdicionarPeca(conn, sql_peca, peca, peso, hr)
+
+
+    def tela_concluido(self):
+        subprocess.run([sys.executable, 'setting.py'])
 
 class adicao_perfil(Screen):
     def __init__(self, **kwargs):
@@ -160,8 +210,10 @@ class adicao_perfil(Screen):
         soma = tamanho + 1
         perfil = 'Perfil '+str(soma)
         AdicionarPerfil(conn2, sql_perfil, perfil, fila, hour, multi)
+
     def tela_concluido(self):
-        process = Popen(['python3', 'settings.py'])
+
+        subprocess.run([sys.executable, 'setting.py'])
 
 
 class maker_3d(App):

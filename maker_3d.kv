@@ -141,7 +141,7 @@
                     text:'Adicionar Peça'
                     font_name:'Comic'
                     color:1,1,1
-                    on_release:root.manager.current = 'novapeca'
+                    on_release:root.manager.current = 'tela_nova2'
 
         BoxLayout:
             size_hint_y:0.1333
@@ -249,7 +249,7 @@
                 padding_x:'350dp'
                 padding_y:'170dp'
                 font_name:'Comic'
-                text:'Novo Perfil'
+                text:'Nova Peça'
 
         BoxLayout:
             orientation:'horizontal'
@@ -269,9 +269,9 @@
                     text_size:self.size
                     padding_x:'23dp'
                     font_name:'Comic'
-                    text:'Preço Filamento'
+                    text:'Nome da peça'
                 TextInput:
-                    id:filamento
+                    id:peca
                     size_hint:None,None
                     height:30
                     width:150
@@ -284,10 +284,10 @@
                     pos_hint_x:None
                     text_size:self.size
                     font_name:'Comic'
-                    padding_x:'38dp'
-                    text:'Preço Hora'
+                    padding_x:'7dp'
+                    text:'Horas de Impressão'
                 TextInput:
-                    id:hora
+                    id:hr
                     size_hint:None,None
                     height:30
                     width:150
@@ -301,10 +301,10 @@
                     pos_hint_y:None
                     font_name:'Comic'
                     text_size:self.size
-                    padding_x:'0dp'
-                    text:'Multiplicador filamento'
+                    padding_x:'55dp'
+                    text:'Peso'
                 TextInput:
-                    id:mult
+                    id:peso
                     size_hint:None,None
                     height:30
                     width:150
@@ -322,8 +322,8 @@
                 font_name:'Comic'
                 pos_hint_x:None
                 pos:200,150
-                text:'Cadastrar perfil'
-                on_press:root.adiciona_perfil(),app.root.get_screen('caixa').reset()
+                text:'Cadastrar peça'
+                on_press:root.adiciona_peca(),app.root.get_screen('caixa').reset_peca()
                 on_release: root.tela_concluido()
 #change
         BoxLayout:
@@ -440,7 +440,7 @@
                 pos_hint_x:None
                 pos:200,150
                 text:'Cadastrar perfil'
-                on_press:root.adiciona_perfil(),app.root.get_screen('caixa').reset()
+                on_press:root.adiciona_perfil(),app.root.get_screen('caixa').reset_perfil()
                 on_release: root.tela_concluido()
 #change
         BoxLayout:
