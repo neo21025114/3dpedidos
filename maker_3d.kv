@@ -17,9 +17,9 @@
             Rectangle:
                 size:self.size
                 pos:self.pos
+
         BoxLayout:
             orientation:'vertical'
-
             BoxLayout:
                 orientation:'horizontal'
                 id:box
@@ -149,8 +149,8 @@
                 size_hint_y:None
                 pos:200,10
                 orientation:'horizontal'
-                padding:[125,0,0,30]
-                spacing:100
+                padding:[98,0,0,30]
+                spacing:165
 
                 Button:
                     size_hint:None,None
@@ -187,7 +187,8 @@
         size_hint:None,None
         height:self.minimum_height
         height:75
-        spacing:70
+        spacing:65
+        padding:[0,50,0,0]
         CheckBox:
             size_hint_x:0.3
             id:elemento
@@ -197,6 +198,24 @@
             font_name:'Comic'
             color:1,1,1
             id:q
+        BoxLayout:
+            spacing:10
+            Button:
+                background_color:0,0,100/255,255/255
+                font_name:'Comic'
+                size_hint:None,None
+                height:25
+                width:35
+                text:'C'
+                #on_press:root.manager.current = 'caixa'
+            Button:
+                background_color:100/255,0,0,255/255
+                font_name:'Comic'
+                size_hint:None,None
+                height:25
+                width:35
+                text:'X'
+                #on_press:root.manager.current = 'caixa'
 
 <adiciona_checkboxes2>:
 

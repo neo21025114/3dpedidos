@@ -23,7 +23,7 @@ sqlittle2 = """SELECT * FROM Perfis"""
 
 class adiciona_checkboxes(BoxLayout):
     def __init__(self, text='', **kwargs):
-        super(adiciona_checkboxes, self).__init__(*kwargs)
+        super(adiciona_checkboxes, self).__init__(**kwargs)
         self.ids.elemento.text = text
         self.ids.q.text = text
 
@@ -79,14 +79,10 @@ for i, j, k in pecas:
     lista.append(i)
 
 
-
 for n, o, p, q in perfis:
     lista2.append(n)
 
 tamanho = len(lista2)
-
-
-
 
 
 class caixa(Screen):
@@ -102,9 +98,9 @@ class caixa(Screen):
             self.ids.box22.add_widget(adiciona_checkboxes2(text=strelement2))
 
 
-
     def reset_perfil(self):
         n = 0
+        lista3 = []
         ce = conn2.cursor()
         ce.execute(sqlittle2)
         perfis = ce.fetchall()
@@ -113,50 +109,48 @@ class caixa(Screen):
             lista3.append(r)
 
         tamanho = len(lista3)
-        adctamanho = str(tamanho + 1)
+        strtamanho = str(tamanho)
         if len(lista3) != 0:
             for element4 in lista3:
                 n = n + 1
                 if n == tamanho:
-                    tamanho = str(tamanho)
-                    sqlittlePerfil = """SELECT Perfil FROM Perfis WHERE Perfil='Perfil """+tamanho+"""'"""
+
+                    sqlittlePerfil = """SELECT Perfil FROM Perfis WHERE Perfil='Perfil """+strtamanho+"""'"""
                     c = conn2.cursor()
                     c.execute(sqlittlePerfil)
                     retorna_novo_perfil = c.fetchall()
+                    print(retorna_novo_perfil)
                     elemento_unico = str(retorna_novo_perfil[0][0])
                     self.ids.box22.add_widget(adiciona_checkboxes2(text=elemento_unico))
-                    print("aq foi")
+
+        """
         else:
 
-            sqlittlePerfil = """SELECT Perfil FROM Perfis WHERE Perfil='Perfil """ + tamanho + """'"""
+            sqlittlePerfil = 
             c = conn2.cursor()
             c.execute(sqlittlePerfil)
             retorna_novo_perfil = c.fetchall()
             elemento_unico = str(retorna_novo_perfil[0][0])
             self.ids.box22.add_widget(adiciona_checkboxes2(text=elemento_unico))
             print("aq foi tbm")
-
+            """
+        return tamanho
     def reset_peca(self):
+        lista4=[]
         j = 0
         c = conn.cursor()
         c.execute(sqlittle)
         informacoes_pecas = c.fetchall()
         for l, m, n in informacoes_pecas:
             lista4.append(l)
-        tamanho = len(lista4)
-        adctamanho = str(tamanho+1)
-        if len(lista)!= 0:
-
-            for element5 in lista4:
-                j = j + 1
-                if j == tamanho:
-
-                    sql_peca = """SELECT Peça FROM Modelos WHERE Peça='"""+lista4[tamanho]+"""' """
-                    c = conn.cursor()
-                    c.execute(sql_peca)
-                    elemento_peca = str(c.fetchall())
-                    print(elemento_peca)
-                    self.ids.box3.add_widget(adiciona_checkboxes(text=elemento_peca))
+        tamanho = int(len(lista4)-1)
+        elemento_selecionado = lista4[tamanho]
+        sql_peca = """SELECT Peça FROM Modelos WHERE Peça='"""+elemento_selecionado+"""' """
+        c = conn.cursor()
+        c.execute(sql_peca)
+        elemento_peca = c.fetchall()
+        strelemento_peca = str(elemento_peca[0][0])
+        self.ids.box3.add_widget(adiciona_checkboxes(text=strelemento_peca))
         #else:
 
             #sql_peca0 = """SELECT Peça FROM Modelos WHERE Peça='"""+peca+"""'"""
@@ -212,22 +206,30 @@ class adicao_perfil(Screen):
         super(adicao_perfil, self).__init__(**kwargs)
 
     def adiciona_perfil(self):
+
         fila = str(self.ids.filamento.text)
         hour = str(self.ids.hora.text)
         multi = str(self.ids.mult.text)
-        soma = tamanho + 1
-        perfil = 'Perfil '+str(soma)
+        tamanho_perfis = []
+
+        ce = conn2.cursor()
+        ce.execute(sqlittle2)
+        var_perfil = ce.fetchall()
+
+        for a, b, c, d in var_perfil:
+            tamanho_perfis.append(a)
+
+        strtamanho_perfis = str(len(tamanho_perfis)+1)
+        perfil = 'Perfil '+strtamanho_perfis
         AdicionarPerfil(conn2, sql_perfil, perfil, fila, hour, multi)
 
     def tela_concluido(self):
 
-        subprocess.run([sys.executable, 'setting.py'])
-
+        subprocess.run([sys.executable, 'settings.py'])
 
 class maker_3d(App):
     def build(self):
         return CustomScreen()
-
 
 
 maker_3d().run()
