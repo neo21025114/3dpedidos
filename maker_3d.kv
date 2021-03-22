@@ -4,6 +4,7 @@
     caixa:
     tela_concluido:
     adicao_peca:
+    pedidos:
 <caixa>:
     name:'caixa'
     BoxLayout:
@@ -162,7 +163,9 @@
                     font_size:'17'
                     height:35
                     width: 200
-                    on_release:root.juncao()
+                    on_press:root.manager.current='peds'
+                    on_press:root.juncao()
+
                 Button:
                     text:'Consultar Pedidos'
                     size_hint:None,None
@@ -198,24 +201,7 @@
             font_name:'Comic'
             color:1,1,1
             id:q
-        BoxLayout:
-            spacing:10
-            Button:
-                background_color:0,0,100/255,255/255
-                font_name:'Comic'
-                size_hint:None,None
-                height:25
-                width:35
-                text:'C'
-                #on_press:root.manager.current = 'caixa'
-            Button:
-                background_color:100/255,0,0,255/255
-                font_name:'Comic'
-                size_hint:None,None
-                height:25
-                width:35
-                text:'X'
-                #on_press:root.manager.current = 'caixa'
+
 
 <adiciona_checkboxes2>:
 
@@ -477,3 +463,116 @@
                     text:'Voltar'
                     on_press:root.manager.current = 'caixa'
 
+<pedidos>:
+
+    BoxLayout:
+        canvas:
+            Color:
+                rgba:50/255,50/255,50/255,1
+            Rectangle:
+                size:self.size
+                pos:self.pos
+        orientation:'vertical'
+        BoxLayout:
+            canvas:
+                Color:
+                    rgba:80/255,80/255,80/255,1
+                Rectangle:
+                    size:650,50
+                    pos:68,520
+            Label:
+                pos_hint_x:None
+                text_size:self.size
+                padding_x:'320dp'
+                padding_y:'170dp'
+                font_name:'Comic'
+                text:'Cadastro de Pedidos'
+
+        BoxLayout:
+            orientation:'horizontal'
+            padding:[40,0,0,40]
+            canvas:
+                Color:
+                    rgba:100/255,100/255,100/255,1
+                Rectangle:
+                    size:650,350
+                    pos:68,160
+            BoxLayout:
+                orientation:'vertical'
+                padding:[55,0,0,100]
+                spacing:20
+                Label:
+                    pos_hint_x:None
+                    text_size:self.size
+                    padding_x:'50dp'
+                    font_name:'Comic'
+                    text:'Perfil'
+                Label:
+                    padding_x:'500dp'
+                    text:'xaaaaxaxaxa'
+                    font_name:'Comic'
+
+            BoxLayout:
+                orientation:'vertical'
+                padding:[26,0,0,200]
+                spacing:30
+                Label:
+                    pos_hint_x:None
+                    text_size:self.size
+                    font_name:'Comic'
+                    padding_x:'38dp'
+                    text:'peça'
+                Label:
+                    pos_hint_x:None
+                    padding_y:'20dp'
+                    text:'y'
+                    font_name:'Comic'
+
+            BoxLayout:
+                orientation:'vertical'
+                padding:[-50,0,0,150]
+                spacing:20
+                Label:
+                    font_size:'15'
+                    pos_hint_x:None
+                    pos_hint_y:None
+                    font_name:'Comic'
+                    text_size:self.size
+                    padding_x:'50dp'
+
+                    text:'Data'
+                TextInput:
+                    id:date
+                    size_hint:None,None
+                    height:30
+                    width:150
+
+        BoxLayout:
+            orientation:'vertical'
+            size_hint_y:0.25
+            padding:[275,0,0,120]
+            Button:
+
+                background_color:50/255,50/255,50/255,1
+                size_hint:None,None
+                height:35
+                width:250
+                font_name:'Comic'
+                pos_hint_x:None
+                pos:200,150
+                text:'Registrar pedido'
+#change
+        BoxLayout:
+            size_hint_y:0.25
+            orientation:'vertical'
+            spacing:100
+
+            BoxLayout:
+                padding:[295,0,0,30]
+                Button:
+                    font_name:'Comic'
+                    size_hint:None,None
+                    height:35
+                    width:200
+                    text:'Voltar'
+                    on_press:root.manager.current = 'caixa'

@@ -171,6 +171,7 @@ class CustomScreen(ScreenManager):
         self.add_widget(adicao_perfil(name='tela_nova'))
         self.add_widget(adicao_peca(name='tela_nova2'))
         self.add_widget(tela_concluido(name='telinha'))
+        self.add_widget(pedidos(name='peds'))
 
     #def abre_nova_peca(self):
      #   CustomScreen().add_widget(adicao_pecas())
@@ -226,6 +227,10 @@ class adicao_perfil(Screen):
     def tela_concluido(self):
 
         subprocess.run([sys.executable, 'settings.py'])
+
+class pedidos(Screen):
+    def __init__(self, **kwargs):
+        super(pedidos, self).__init__(**kwargs)
 
 class maker_3d(App):
     def build(self):
