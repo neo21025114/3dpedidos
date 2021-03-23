@@ -1,21 +1,20 @@
 from kivy.app import App
 from conexao import conexao1
 from conexao import conexao2
+from conexao import conexao3
 from kivy.config import Config
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 from AdicaoPecas import AdicionarPerfil, sql_perfil, AdicionarPeca, sql_peca
 import subprocess
 import sys
-from os import pipe
-import kivy.uix
 
 Config.set('graphics', 'resizable', False) # janela nao alteravel de tamanho
 #Config.set('graphics','width','500')  # largura janela
 #Config.set('graphics','height','500') #altura janela
 conn = conexao1()
 conn2 = conexao2()
-
+conn3 = conexao3()
 sqlittle = """SELECT * FROM Modelos """
 sqlittle2 = """SELECT * FROM Perfis"""
 
@@ -231,6 +230,17 @@ class adicao_perfil(Screen):
 class pedidos(Screen):
     def __init__(self, **kwargs):
         super(pedidos, self).__init__(**kwargs)
+    def adc_pedido(self):
+
+        self.date = self.ids.date.text
+        adc = """INSERT INTO Pedidos (Perfil, Peça, Data) VALUES (?, ?, ?)"""
+        ct = conn3.cursor()
+        ct.execute(adc, (adiciona_checkboxes2.retorna_elemento_selecionado.pegar, adiciona_checkboxes.retorna_elemento_selecionado.pegar, self.date))
+        conn3.commit()
+
+    def tela_concluido(self):
+        subprocess.run([sys.executable, 'settings.py'])
+        print("foi")
 
 class maker_3d(App):
     def build(self):
