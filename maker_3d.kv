@@ -164,7 +164,7 @@
                     height:35
                     width: 200
                     on_press:root.manager.current='peds'
-                    on_press:root.juncao()
+                    #on_press:root.juncao()
 
                 Button:
                     text:'Consultar Pedidos'
@@ -499,38 +499,39 @@
                     pos:68,160
             BoxLayout:
                 orientation:'vertical'
-                padding:[55,0,0,100]
-                spacing:20
+                padding:[0,0,0,200]
+                spacing:30
                 Label:
                     pos_hint_x:None
                     text_size:self.size
-                    padding_x:'50dp'
+                    padding_x:'105dp'
                     font_name:'Comic'
                     text:'Perfil'
                 Label:
-                    padding_x:'500dp'
-                    text:'xaaaaxaxaxa'
+                    padding_x:'0dp'
+                    text:'Xaaaaxaxaxa'
                     font_name:'Comic'
 
             BoxLayout:
                 orientation:'vertical'
-                padding:[26,0,0,200]
+                padding:[0,0,0,200]
                 spacing:30
                 Label:
                     pos_hint_x:None
                     text_size:self.size
                     font_name:'Comic'
-                    padding_x:'38dp'
+                    padding_x:'61dp'
                     text:'peça'
                 Label:
                     pos_hint_x:None
-                    padding_y:'20dp'
-                    text:'y'
+                    text_size:self.size
+                    padding_x:'43dp'
+                    text:'Hulkranha'
                     font_name:'Comic'
 
             BoxLayout:
                 orientation:'vertical'
-                padding:[-50,0,0,150]
+                padding:[-20,0,0,182]
                 spacing:20
                 Label:
                     font_size:'15'
@@ -538,14 +539,14 @@
                     pos_hint_y:None
                     font_name:'Comic'
                     text_size:self.size
-                    padding_x:'50dp'
-
+                    padding_x:'45dp'
                     text:'Data'
                 TextInput:
                     id:date
+                    font_size:'11'
                     size_hint:None,None
-                    height:30
-                    width:150
+                    height:25
+                    width:130
 
         BoxLayout:
             orientation:'vertical'
