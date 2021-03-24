@@ -20,7 +20,6 @@ sqlittle = """SELECT * FROM Modelos """
 sqlittle2 = """SELECT * FROM Perfis"""
 
 
-
 class adiciona_checkboxes(BoxLayout):
     def __init__(self, text='', **kwargs):
         super(adiciona_checkboxes, self).__init__(**kwargs)
@@ -96,7 +95,6 @@ class caixa(Screen):
         for element2 in lista2:
             strelement2 = str(element2)
             self.ids.box22.add_widget(adiciona_checkboxes2(text=strelement2))
-
 
     def reset_perfil(self):
         n = 0
@@ -231,6 +229,10 @@ class adicao_perfil(Screen):
 class pedidos(Screen):
     def __init__(self, **kwargs):
         super(pedidos, self).__init__(**kwargs)
+
+    def adc_pedido(self):
+
+        self.date = self.ids.data
 
 class maker_3d(App):
     def build(self):
