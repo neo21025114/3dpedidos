@@ -5,6 +5,7 @@
     tela_concluido:
     adicao_peca:
     pedidos:
+    painel:
 <caixa>:
     name:'caixa'
     BoxLayout:
@@ -164,7 +165,7 @@
                     height:35
                     width: 200
                     on_press:root.manager.current='peds'
-                    #on_press:root.juncao()
+                    #on_press:on_press:root.refresh()
 
                 Button:
                     text:'Consultar Pedidos'
@@ -176,6 +177,8 @@
                     font_size:'17'
                     height:35
                     width: 200
+                    on_press:root.manager.current='painel_pedidos'
+
 
 <adiciona_checkboxes>:
 
@@ -563,7 +566,8 @@
                 pos:200,150
                 text:'Registrar pedido'
                 on_press:root.adc_pedido()
-#change
+                on_press:root.tela_concluido()
+                on_press:root.ponte()
         BoxLayout:
             size_hint_y:0.25
             orientation:'vertical'
@@ -578,4 +582,80 @@
                     width:200
                     text:'Voltar'
                     on_press:root.manager.current = 'caixa'
-                    on_press:root.tela_concluido()
+
+
+<painel>:
+
+    BoxLayout:
+        canvas:
+            Color:
+                rgba:50/255,50/255,50/255,1
+            Rectangle:
+                size:self.size
+                pos:self.pos
+        orientation:'vertical'
+
+        BoxLayout:
+            size_hint_y:0.2
+            canvas:
+                Color:
+                    rgba:80/255,80/255,80/255,1
+                Rectangle:
+                    size:650,50
+                    pos:68,520
+            Label:
+                pos_hint_x:None
+                text_size:self.size
+                padding_x:'330dp'
+                padding_y:'35dp'
+                font_name:'Comic'
+                text:'Painel de Pedidos'
+        ScrollView:
+            BoxLayout:
+
+                canvas:
+                    Color:
+                        rgba:80/255,80/255,80/255,1
+                    Rectangle:
+                        size:650,600
+                        pos:68,160
+
+                height:self.minimum_height
+                pos_hint_x:None
+
+                orientation:'vertical'
+                id:pedidos1
+                size_hint_y:None
+
+        BoxLayout:
+            size_hint_y:0.2
+            orientation:'vertical'
+            spacing:10
+
+            BoxLayout:
+                padding:[295,0,0,30]
+                Button:
+                    font_name:'Comic'
+                    size_hint:None,None
+                    height:35
+                    width:200
+                    text:'Voltar'
+                    on_press:root.manager.current = 'caixa'
+
+<peds>:
+    size_hint_y:None
+    padding:[340,0,0,0]
+    height:self.minimum_height
+    canvas:
+        Color:
+            rgba:245/255,245/255,245/255,1
+
+    BoxLayout:
+        orientation:'horizontal'
+        size_hint:None,None
+        height:self.minimum_height
+        height:75
+        spacing:50
+        padding:[0,50,0,0]
+        Label:
+            id:informacoes_pedidos

@@ -132,22 +132,7 @@ class caixa(Screen):
             print("aq foi tbm")
             """
         return tamanho
-    def reset_peca(self):
-        lista4=[]
-        j = 0
-        c = conn.cursor()
-        c.execute(sqlittle)
-        informacoes_pecas = c.fetchall()
-        for l, m, n in informacoes_pecas:
-            lista4.append(l)
-        tamanho = int(len(lista4)-1)
-        elemento_selecionado = lista4[tamanho]
-        sql_peca = """SELECT Peça FROM Modelos WHERE Peça='"""+elemento_selecionado+"""' """
-        c = conn.cursor()
-        c.execute(sql_peca)
-        elemento_peca = c.fetchall()
-        strelemento_peca = str(elemento_peca[0][0])
-        self.ids.box3.add_widget(adiciona_checkboxes(text=strelemento_peca))
+
         #else:
 
             #sql_peca0 = """SELECT Peça FROM Modelos WHERE Peça='"""+peca+"""'"""
@@ -156,9 +141,11 @@ class caixa(Screen):
             #primeiro_elemento = str(c.fetchall())
 
             #self.ids.box3.add_widget(adiciona_checkboxes(text=primeiro_elemento))
+
     def juncao(self):
         print(adiciona_checkboxes2.retorna_elemento_selecionado.pegar)
         print(adiciona_checkboxes.retorna_elemento_selecionado.pegar)
+
 
 
 class CustomScreen(ScreenManager):
@@ -169,6 +156,7 @@ class CustomScreen(ScreenManager):
         self.add_widget(adicao_peca(name='tela_nova2'))
         self.add_widget(tela_concluido(name='telinha'))
         self.add_widget(pedidos(name='peds'))
+        self.add_widget(painel(name='painel_pedidos'))
 
     #def abre_nova_peca(self):
      #   CustomScreen().add_widget(adicao_pecas())
@@ -225,14 +213,17 @@ class adicao_perfil(Screen):
 
         subprocess.run([sys.executable, 'settings.py'])
 
+
 class pedidos(Screen):
     def __init__(self, **kwargs):
         super(pedidos, self).__init__(**kwargs)
+
     def adc_pedido(self):
 
         self.date = self.ids.date.text
         adc = """INSERT INTO Pedidos (Perfil, Peça, Data) VALUES (?, ?, ?)"""
         ct = conn3.cursor()
+
         ct.execute(adc, (adiciona_checkboxes2.retorna_elemento_selecionado.pegar, adiciona_checkboxes.retorna_elemento_selecionado.pegar, self.date))
         conn3.commit()
 
@@ -240,9 +231,47 @@ class pedidos(Screen):
         subprocess.run([sys.executable, 'settings.py'])
         print("foi")
 
-    def adc_pedido(self):
+    def ponte(self):
+        painel.refresh()
 
-        self.date = self.ids.data
+
+sqlittle3 = """SELECT * FROM Pedidos"""
+
+
+lista_pedidos = seleciona_peca(conn3, sqlittle3)
+
+
+
+
+class painel(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        for i in lista_pedidos:
+            strpedido = str(i)
+            self.ids.pedidos1.add_widget(peds(text=strpedido))
+    def refresh(self):
+        ct= conn3.cursor()
+        ct.execute("SELECT * FROM Pedidos")
+        lista_refresh = ct.fetchall()
+        elementos = []
+        for j in lista_refresh:
+            elementos.append(j)
+        tamanho_lista = len(elementos)
+        print(tamanho_lista)
+        p = 0
+        for elemento in elementos:
+            p = p+1
+            if p == tamanho_lista:
+                painel.ids.pedidos1.add_widget(peds(text=elemento))
+
+
+class peds(BoxLayout):
+    def __init__(self, text ='',**kwargs):
+        super(peds, self).__init__(**kwargs)
+        self.ids.informacoes_pedidos.text = text
+
+
+
 
 class maker_3d(App):
     def build(self):
