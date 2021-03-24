@@ -1,8 +1,8 @@
 from conexao import conexao1
 from sqlite3 import Error
 
-sql_peca = """ INSERT INTO Modelos (Peça, Peso, Tempo, Custo, Preço)
-               VALUES(?, ?, ?, ?, ?);
+sql_peca = """ INSERT INTO Modelos (Peça, Tempo, Peso)
+               VALUES(?, ?, ?);
             """
 
 sql_perfil = """INSERT INTO Perfis (Perfil, Preço_Filamento, Preço_Hora, Multiplicador_Filamento)
