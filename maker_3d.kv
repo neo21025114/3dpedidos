@@ -562,6 +562,7 @@
                 pos_hint_x:None
                 pos:200,150
                 text:'Registrar pedido'
+                on_press:root.adc_pedido()
 #change
         BoxLayout:
             size_hint_y:0.25
@@ -577,3 +578,4 @@
                     width:200
                     text:'Voltar'
                     on_press:root.manager.current = 'caixa'
+                    on_press:root.tela_concluido()

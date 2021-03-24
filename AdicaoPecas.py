@@ -1,7 +1,11 @@
 from conexao import conexao1
 from sqlite3 import Error
 
-sql_peca = """ INSERT INTO Modelos (Peça, Tempo, Peso)
+
+sql_peca = """ INSERT INTO Modelos (Peça, Tempo, Peso)"""
+
+sql_peca = """ INSERT INTO Modelos (Peça, Peso, Tempo)
+
                VALUES(?, ?, ?);
             """
 
@@ -16,10 +20,10 @@ def consulta(connect, command):
     return fila
 
 
-def AdicionarPerfil(connection, commander, a, b, c, d):
+def AdicionarPerfil(connection, commander, a, b, c,d):
     try:
         ca = connection.cursor()
-        ca.execute(commander, (a, b, c, d))
+        ca.execute(commander, (a, b, c,d))
         connection.commit()
     except Error as er:
         print(er)
