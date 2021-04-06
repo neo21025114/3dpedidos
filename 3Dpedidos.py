@@ -26,10 +26,12 @@ class adiciona_checkboxes(BoxLayout):
         self.ids.q.text = text
 
     def retorna_elemento_selecionado(self):
-        adiciona_checkboxes.retorna_elemento_selecionado.pegar = self.ids.elemento.text
+
+        pegar1 = self.ids.elemento.text
+        return pegar1
 
     def retorna_todas_informacoes_peca_selecionada(self):
-        sqlittle4 = """SELECT * FROM Modelos WHERE Peça='""" +adiciona_checkboxes.retorgina_elemento_selecionado.pegar+ """' """
+        sqlittle4 = """SELECT * FROM Modelos WHERE Peça='""" +self.retorna_elemento_selecionado()+ """' """
         c = conn.cursor()
         c.execute(sqlittle4)
         c.fetchall()
@@ -43,10 +45,11 @@ class adiciona_checkboxes2(BoxLayout):
         self.ids.q.text = text
 
     def retorna_elemento_selecionado(self):
-        adiciona_checkboxes2.retorna_elemento_selecionado.pegar = self.ids.elemento.text
 
-    def retorna_todas_informacoes_peca_selecionada(self):
-        sqlittle4 = """SELECT * FROM Perfil1 WHERE Perfil='""" + adiciona_checkboxes2.retorna_elemento_selecionado.pegar+ """' """
+        pegar = self.ids.elemento.text
+        return pegar
+    def retorna_todas_informacoes_perfil_selecionado(self):
+        sqlittle4 = """SELECT * FROM Perfil1 WHERE Perfil='""" +self.retorna_elemento_selecionado()+ """' """
         c = conn.cursor()
         c.execute(sqlittle4)
         print(c.fetchall())
@@ -94,6 +97,15 @@ class caixa(Screen):
         for element2 in lista2:
             strelement2 = str(element2)
             self.ids.box22.add_widget(adiciona_checkboxes2(text=strelement2))
+    def rest_peca(self):
+        colhe = """ SELECT * FROM Modelos """
+        c = conn.cursor()
+        c.execute(colhe)
+        models = c.fetchall()
+        lista_pecas = []
+        for q,w,e in models:
+            lista_pecas.append(q)
+            print(lista_pecas)
 
     def reset_perfil(self):
         n = 0
@@ -143,9 +155,8 @@ class caixa(Screen):
             #self.ids.box3.add_widget(adiciona_checkboxes(text=primeiro_elemento))
 
     def juncao(self):
-        print(adiciona_checkboxes2.retorna_elemento_selecionado.pegar)
-        print(adiciona_checkboxes.retorna_elemento_selecionado.pegar)
-
+        print(adiciona_checkboxes.retorna_elemento_selecionado())
+        print(adiciona_checkboxes2.retorna_elemento_selecionado())
 
 
 class CustomScreen(ScreenManager):
@@ -218,13 +229,17 @@ class pedidos(Screen):
     def __init__(self, **kwargs):
         super(pedidos, self).__init__(**kwargs)
 
+
+        self.perfil = 'oi'
+        self.peca = 'tchau'
+
     def adc_pedido(self):
 
         self.date = self.ids.date.text
         adc = """INSERT INTO Pedidos (Perfil, Peça, Data) VALUES (?, ?, ?)"""
         ct = conn3.cursor()
 
-        ct.execute(adc, (adiciona_checkboxes2.retorna_elemento_selecionado.pegar, adiciona_checkboxes.retorna_elemento_selecionado.pegar, self.date))
+        ct.execute(adc, (self.perfil, self.peca, self.date))
         conn3.commit()
 
     def tela_concluido(self):
@@ -232,7 +247,7 @@ class pedidos(Screen):
         print("foi")
 
     def ponte(self):
-        painel.refresh()
+        painel().refresh()
 
 
 sqlittle3 = """SELECT * FROM Pedidos"""
@@ -241,16 +256,15 @@ sqlittle3 = """SELECT * FROM Pedidos"""
 lista_pedidos = seleciona_peca(conn3, sqlittle3)
 
 
-
-
 class painel(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         for i in lista_pedidos:
             strpedido = str(i)
             self.ids.pedidos1.add_widget(peds(text=strpedido))
+
     def refresh(self):
-        ct= conn3.cursor()
+        ct = conn3.cursor()
         ct.execute("SELECT * FROM Pedidos")
         lista_refresh = ct.fetchall()
         elementos = []
@@ -260,9 +274,10 @@ class painel(Screen):
         print(tamanho_lista)
         p = 0
         for elemento in elementos:
+            strelemento= str(elemento)
             p = p+1
             if p == tamanho_lista:
-                painel.ids.pedidos1.add_widget(peds(text=elemento))
+                self.ids.pedidos1.add_widget(peds(text=strelemento))
 
 
 class peds(BoxLayout):
